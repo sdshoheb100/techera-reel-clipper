@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0b1120" />
+  <link rel="manifest" href="./manifest.json" />
+  <title>TechEra AI — Market & Reel Studio</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
+    :root {
+      --bg: #0b1120;
+      --card: #131c31;
+      --border: #1e293b;
+      --accent: #38bdf8;
+      --green: #10b981;
+      --amber: #f59e0b;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Hind Siliguri', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding-bottom: 84px;
+      min-height: 100vh;
+    }
+    header {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(11, 17, 32, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 16px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .brand h1 { font-size: 18px; font-weight: 700; color: #fff; }
+    .brand p { font-size: 12px; color: var(--muted); }
+    .ver-pill {
+      background: linear-gradient(135deg, #0284c7, #6366f1);
+      color: #fff; font-size: 12px; font-weight: 700;
+      padding: 5px 11px; border-radius: 999px;
+      box-shadow: 0 0 14px rgba(56, 189, 248, 0.35);
+    }
+    main { max-width: 680px; margin: 0 auto; padding: 14px; }
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+    .section-title {
+      font-size: 16px; font-weight: 700; color: var(--accent);
+      margin: 6px 0 12px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 14px; margin-bottom: 12px;
+    }
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
+    .stat-box {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 10px; text-align: center;
+    }
+    .stat-val { font-size: 20px; font-weight: 700; color: var(--accent); }
+    .stat-lbl { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .trend-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 14px; margin-bottom: 12px;
+    }
+    .trend-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .badge {
+      font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px;
+      background: rgba(56, 189, 248, 0.15); color: var(--accent);
+    }
+    .score { font-size: 13px; font-weight: 700; color: var(--green); }
+    .trend-title { font-size: 15px; font-weight: 600; line-height: 1.35; margin-bottom: 6px; }
+    .hook {
+      font-size: 13px; color: #fde68a; background: rgba(245, 158, 11, 0.1);
+      border-left: 3px solid var(--amber); padding: 6px 9px; border-radius: 6px; margin-bottom: 10px;
+    }
+    .meta-row { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--muted); }
+    .btn {
+      display: inline-block; background: #0284c7; color: #fff; text-decoration: none;
+      font-size: 13px; font-weight: 600; padding: 8px 13px; border-radius: 9px;
+      border: none; cursor: pointer;
+    }
+    .btn-green { background: var(--green); }
+    .btn-block { display: block; width: 100%; text-align: center; padding: 12px; font-size: 15px; margin-top: 10px; }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .chip { background: #1e293b; color: #e2e8f0; font-size: 12px; padding: 5px 10px; border-radius: 999px; }
+    .bar-wrap { background: #0f172a; border-radius: 999px; height: 9px; overflow: hidden; margin-top: 5px; }
+    .bar-fill { height: 100%; background: linear-gradient(90deg, #0284c7, #10b981); border-radius: 999px; }
+    label { display: block; font-size: 13px; color: var(--muted); margin: 10px 0 4px; }
+    input, select, textarea {
+      width: 100%; background: #0f172a; border: 1px solid #334155; color: #fff;
+      border-radius: 10px; padding: 10px; font-size: 14px; font-family: inherit;
+    }
+    nav {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 30;
+      background: rgba(15, 23, 42, 0.96); backdrop-filter: blur(12px);
+      border-top: 1px solid var(--border);
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      padding: 6px 4px 10px;
+    }
+    nav button {
+      background: none; border: none; color: var(--muted); font-family: inherit;
+      font-size: 11px; font-weight: 600; display: flex; flex-direction: column;
+      align-items: center; gap: 3px; cursor: pointer; padding: 4px;
+    }
+    nav button.active { color: var(--accent); }
+    nav button span.ico { font-size: 18px; }
+    ul.clean { padding-left: 18px; line-height: 1.65; font-size: 13px; color: #cbd5e1; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <h1>TechEra AI Studio</h1>
+      <p id="codename">Market Expert &amp; Cloud Reel Engine</p>
+    </div>
+    <div class="ver-pill" id="versionBadge">v0.1.0</div>
+  </header>
+
+  <main>
+    <!-- TAB 1: DAILY TRENDS -->
+    <section id="tab-trends" class="tab-pane active">
+      <div class="stats-grid">
+        <div class="stat-box"><div class="stat-val" id="statTrends">--</div><div class="stat-lbl">আজকের ট্রেন্ড</div></div>
+        <div class="stat-box"><div class="stat-val" id="statReels">--</div><div class="stat-lbl">তৈরি রিলস</div></div>
+        <div class="stat-box"><div class="stat-val" id="statRuns">--</div><div class="stat-lbl">মোট AI রান</div></div>
+      </div>
+      <div class="section-title">
+        <span>🔥 আজকের সেরা প্রোডাক্ট রিকমেন্ডেশন</span>
+        <span style="font-size:11px;color:#94a3b8" id="trendsTime"></span>
+      </div>
+      <div id="trendsList"><div class="card">ডাটা লোড হচ্ছে...</div></div>
+    </section>
+
+    <!-- TAB 2: FUTURE FORECAST -->
+    <section id="tab-forecast" class="tab-pane">
+      <div class="section-title"><span>🔮 ফিউচার ডিমান্ড ও নেক্সট-জেন পূর্বাভাস</span></div>
+      <div id="forecastBox"><div class="card">পূর্বাভাস লোড হচ্ছে...</div></div>
+    </section>
+
+    <!-- TAB 3: SELF LEARNING -->
+    <section id="tab-learning" class="tab-pane">
+      <div class="section-title"><span>🧠 স্ব-শিক্ষণ মেমরি ও আপগ্রেড রোডম্যাপ</span></div>
+      <div id="learningBox"><div class="card">মেমরি লোড হচ্ছে...</div></div>
+    </section>
+
+    <!-- TAB 4: MOBILE CONTROL -->
+    <section id="tab-control" class="tab-pane">
+      <div class="section-title"><span>🎛️ মোবাইল থেকে ক্লাউড কন্ট্রোল</span></div>
+      <div class="card">
+        <p style="font-size:13px;color:#94a3b8;margin-bottom:8px;">
+          পিসি বন্ধ থাকলেও নিচের লিংক দিয়ে সরাসরি GitHub ক্লাউড সার্ভারে নতুন রিলস জেনারেট বা ডেইলি ট্রেন্ড স্ক্যান চালু করতে পারবেন।
+        </p>
+        <label>প্রোডাক্টের নাম</label>
+        <input id="ctrlProduct" placeholder="যেমন: Mini Portable Room Heater" />
+        <label>দাম (Price Badge)</label>
+        <input id="ctrlPrice" placeholder="যেমন: Tk 1,290" />
+        <label>ভিডিও লিংক (একাধিক হলে কমা দিয়ে দিন)</label>
+        <textarea id="ctrlUrls" rows="3" placeholder="https://... , https://..."></textarea>
+        <button class="btn btn-green btn-block" onclick="openCloudRun()">🚀 GitHub ক্লাউডে রান ওপেন করুন</button>
+        <a class="btn btn-block" style="background:#334155" href="https://github.com/sdshoheb100/techera-reel-clipper/actions" target="_blank">📦 তৈরি করা ভিডিও (Artifacts) ডাউনলোড</a>
+      </div>
+    </section>
+  </main>
+
+  <nav>
+    <button class="active" onclick="switchTab('trends', this)"><span class="ico">🔥</span>ট্রেন্ডিং</button>
+    <button onclick="switchTab('forecast', this)"><span class="ico">🔮</span>ফিউচার</button>
+    <button onclick="switchTab('learning', this)"><span class="ico">🧠</span>AI মেমরি</button>
+    <button onclick="switchTab('control', this)"><span class="ico">🎛️</span>কন্ট্রোল</button>
+  </nav>
+
+  <script src="./data/bundle.js"></script>
+  <script>
+    function switchTab(id, btn) {
+      document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('nav button').forEach(el => el.classList.remove('active'));
+      document.getElementById('tab-' + id).classList.add('active');
+      if (btn) btn.classList.add('active');
+    }
+
+    function useInControl(url, title) {
+      document.getElementById('ctrlUrls').value = url;
+      document.getElementById('ctrlProduct').value = title.slice(0, 36);
+      switchTab('control', document.querySelectorAll('nav button')[3]);
+    }
+
+    function openCloudRun() {
+      const prod = document.getElementById('ctrlProduct').value.trim();
+      const urls = document.getElementById('ctrlUrls').value.trim();
+      if (urls && navigator.clipboard) { navigator.clipboard.writeText(urls).catch(() => {}); }
+      alert((urls ? 'লিংক কপি হয়েছে! ' : '') + 'এখন GitHub Actions পেজ খুলবে — Run workflow বাটনে ট্যাপ করে পেস্ট করুন।');
+      window.open('https://github.com/sdshoheb100/techera-reel-clipper/actions/workflows/ai_reel_engine.yml', '_blank');
+    }
+
+    async function loadJSON(path) {
+      try {
+        const r = await fetch(path + '?t=' + Date.now());
+        if (!r.ok) return null;
+        return await r.json();
+      } catch { return null; }
+    }
+
+    async function init() {
+      const bundled = window.TECHERA_DATA || {};
+      const [verF, trendsF, memF, fcF] = await Promise.all([
+        loadJSON('./data/version.json'),
+        loadJSON('./data/daily_trends.json'),
+        loadJSON('./data/learning_memory.json'),
+        loadJSON('./data/future_forecast.json')
+      ]);
+      const ver = verF || bundled.version;
+      const trends = trendsF || bundled.trends;
+      const mem = memF || bundled.memory;
+      const fc = fcF || bundled.forecast;
+
+      if (ver) {
+        document.getElementById('versionBadge').textContent = 'v' + ver.version;
+        document.getElementById('codename').textContent = ver.codename + ' · ' + ver.engine_name;
+      }
+
+      if (mem) {
+        document.getElementById('statReels').textContent = mem.total_reels_generated ?? 0;
+        document.getElementById('statRuns').textContent = mem.total_runs ?? 0;
+        const tips = (mem.next_video_tips_bn || []).map(t => `<li>${t}</li>`).join('');
+        const road = (mem.next_version_suggestions || []).map(s => `<li><strong>${s.target}:</strong> ${s.feature}</li>`).join('');
+        document.getElementById('learningBox').innerHTML = `
+          <div class="card">
+            <h3 style="font-size:15px;color:#38bdf8;margin-bottom:8px;">💡 নেক্সট ভিডিও আরও ভালো করার টিপস</h3>
+            <ul class="clean">${tips}</ul>
+          </div>
+          <div class="card">
+            <h3 style="font-size:15px;color:#10b981;margin-bottom:8px;">🚀 পরবর্তী ভার্সন আপগ্রেড রোডম্যাপ</h3>
+            <ul class="clean">${road}</ul>
+          </div>`;
+      }
+
+      if (trends && trends.top_picks) {
+        document.getElementById('statTrends').textContent = trends.top_picks.length;
+        document.getElementById('trendsTime').textContent = (trends.generated_at || '').slice(0, 10);
+        document.getElementById('trendsList').innerHTML = trends.top_picks.map((p, i) => `
+          <div class="trend-card">
+            <div class="trend-top">
+              <span class="badge">#${i+1} · ${p.niche_label_bn}</span>
+              <span class="score">⭐ স্কোর ${p.trend_score}/100</span>
+            </div>
+            <div class="trend-title">${p.title}</div>
+            <div class="hook">💬 ${p.recommended_hook_bn}</div>
+            <div class="meta-row">
+              <span>👁️ ${(p.views || 0).toLocaleString()} ভিউ · ⏱️ ${p.duration || 0}s</span>
+              <div>
+                <a class="btn" style="background:#334155;margin-right:6px" href="${p.url}" target="_blank">দেখুন</a>
+                <button class="btn" onclick="useInControl('${p.url.replace(/'/g,'')}', '${p.title.replace(/'/g,'')}')">রিলস বানান</button>
+              </div>
+            </div>
+          </div>`).join('') || '<div class="card">কোনো ট্রেন্ড ডাটা পাওয়া যায়নি।</div>';
+      }
+
+      if (fc) {
+        const curChips = (fc.current_hot_products || []).map(x => `<span class="chip">${x}</span>`).join('');
+        const nxtChips = (fc.next_30_days_predicted_products || []).map(x => `<span class="chip">${x}</span>`).join('');
+        const bars = (fc.rising_niches || []).map(n => `
+          <div style="margin-bottom:10px;">
+            <div style="display:flex;justify-content:space-between;font-size:13px;">
+              <span>${n.niche}</span><strong style="color:#38bdf8">${n.predicted_demand_index}%</strong>
+            </div>
+            <div class="bar-wrap"><div class="bar-fill" style="width:${n.predicted_demand_index}%"></div></div>
+          </div>`).join('');
+        document.getElementById('forecastBox').innerHTML = `
+          <div class="card">
+            <span class="badge">বর্তমান মৌসুম: ${fc.current_season_bn}</span>
+            <p style="font-size:13px;color:#cbd5e1;margin-top:8px;">${fc.current_strategy_bn}</p>
+            <div class="chip-row">${curChips}</div>
+          </div>
+          <div class="card">
+            <span class="badge" style="background:rgba(16,185,129,0.18);color:#10b981">আগামী ৩০ দিনের পূর্বাভাস: ${fc.next_30_days_season_bn}</span>
+            <p style="font-size:13px;color:#cbd5e1;margin-top:8px;">${fc.next_30_days_strategy_bn}</p>
+            <div class="chip-row">${nxtChips}</div>
+          </div>
+          <div class="card">
+            <h3 style="font-size:15px;color:#38bdf8;margin-bottom:10px;">📈 চাহিদা সূচক (Demand Index)</h3>
+            ${bars}
+          </div>`;
+      }
+    }
+    init();
+  </script>
+</body>
+</html>

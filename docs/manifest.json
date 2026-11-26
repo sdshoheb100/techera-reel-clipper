@@ -1,0 +1,9 @@
+{
+  "name": "TechEra AI Market & Reel Studio",
+  "short_name": "TechEra AI",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0b1120",
+  "theme_color": "#0284c7",
+  "description": "AI Market Expert, Future Trend Forecaster & Cloud Reel Clipper"
+}
