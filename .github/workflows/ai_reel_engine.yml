@@ -1,0 +1,101 @@
+name: TechEra AI Market & Reel Engine (v0.1.0)
+
+on:
+  schedule:
+    # Daily trend scouting at 09:00 AM Bangladesh Time (03:00 UTC)
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Engine Mode"
+        type: choice
+        required: true
+        default: "daily_trend_report"
+        options:
+          - daily_trend_report
+          - auto_trending_reel
+          - custom_video_reel
+      niche:
+        description: "Product Category / Niche"
+        type: choice
+        required: false
+        default: "all"
+        options:
+          - all
+          - tech_gadgets
+          - fashion_winter
+          - home_kitchen
+          - mobile_audio
+          - general_viral
+      video_urls:
+        description: "Custom Video URLs (comma-separated, for custom_video_reel)"
+        required: false
+        default: ""
+      product_name:
+        description: "Product Title Overlay"
+        required: false
+        default: "TechEra BD Trending Gadget"
+      price_text:
+        description: "Price Badge (e.g. Tk 1,290)"
+        required: false
+        default: "Tk 1,290"
+      clip_seconds:
+        description: "Seconds per Clip (3 to 10)"
+        required: false
+        default: "4"
+      max_clips:
+        description: "Number of Videos to Research & Stitch (1 to 4)"
+        required: false
+        default: "3"
+
+permissions:
+  contents: write
+
+jobs:
+  run_ai_engine:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install FFmpeg & Fonts
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y ffmpeg fonts-dejavu-core
+
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run TechEra AI Engine
+        run: |
+          python main.py \
+            --mode "${{ github.event.inputs.mode || 'daily_trend_report' }}" \
+            --niche "${{ github.event.inputs.niche || 'all' }}" \
+            --urls "${{ github.event.inputs.video_urls || '' }}" \
+            --product "${{ github.event.inputs.product_name || 'TechEra BD Trending Gadget' }}" \
+            --price "${{ github.event.inputs.price_text || '' }}" \
+            --clip-seconds "${{ github.event.inputs.clip_seconds || '4' }}" \
+            --max-clips "${{ github.event.inputs.max_clips || '3' }}"
+
+      - name: Persist Learning Memory & Mobile App Live Feed
+        run: |
+          git config user.name "TechEra AI Bot"
+          git config user.email "bot@techerabd.local"
+          git add data/learning_memory.json docs/data/
+          git diff --staged --quiet || git commit -m "chore(ai): update daily trends & learning memory [skip ci]"
+          git push
+
+      - name: Upload Output Artifacts (Ready Reel & Trend Report)
+        uses: actions/upload-artifact@v4
+        with:
+          name: techera-ai-output-${{ github.run_number }}
+          path: |
+            output/
+          retention-days: 7
