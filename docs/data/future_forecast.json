@@ -1,0 +1,56 @@
+{
+  "generated_at": "2026-11-26T18:11:40.522087+00:00",
+  "current_season_bn": "শীতের শুরু (Early Winter)",
+  "current_hot_products": [
+    "Hoodie & Winter Wear",
+    "Mini Room Heater",
+    "Electric Kettle & Hot Water Tap",
+    "Vacuum Flask"
+  ],
+  "current_strategy_bn": "শীতের আরাম ও ফ্যাশন — প্রথম ৩ সেকেন্ডে প্রোডাক্ট ইউজ ডেমো দেখান",
+  "next_30_days_season_bn": "ভরা শীত (Peak Winter)",
+  "next_30_days_predicted_products": [
+    "Premium Hoodie Combo",
+    "Room Heater & Geyser Tap",
+    "Thermos Flask",
+    "Smart Gadgets Gift"
+  ],
+  "next_30_days_strategy_bn": "উইন্টার অফার ও কম্বো ডিল — দাম বড় ফন্টে হাইলাইট করুন",
+  "rising_niches": [
+    {
+      "niche": "tech_gadgets",
+      "learned_weight": 1.3,
+      "live_avg_score": 60.0,
+      "predicted_demand_index": 70.6
+    },
+    {
+      "niche": "fashion_winter",
+      "learned_weight": 1.15,
+      "live_avg_score": 60.0,
+      "predicted_demand_index": 67.3
+    },
+    {
+      "niche": "home_kitchen",
+      "learned_weight": 1.1,
+      "live_avg_score": 60.0,
+      "predicted_demand_index": 66.2
+    },
+    {
+      "niche": "mobile_audio",
+      "learned_weight": 1.1,
+      "live_avg_score": 60.0,
+      "predicted_demand_index": 66.2
+    },
+    {
+      "niche": "general_viral",
+      "learned_weight": 1.0,
+      "live_avg_score": 60.0,
+      "predicted_demand_index": 64.0
+    }
+  ],
+  "recommended_content_upgrades_bn": [
+    "মাল্টি-ক্লিপ ফাস্ট কাট (প্রতি ক্লিপ ৩–৪ সেকেন্ড) + প্রথম ২ সেকেন্ডে ভিজ্যুয়াল হুক",
+    "মূল অডিও ১০০% বাদ দিয়ে বাংলা ভয়েসওভার + প্রোডাক্টের দাম বড় করে দেখানো",
+    "পরবর্তী ভার্সন (v0.2.0) আপগ্রেড: অটো বাংলা AI ভয়েসওভার ও ব্যাকগ্রাউন্ড মিউজিক যুক্ত করা"
+  ]
+}
