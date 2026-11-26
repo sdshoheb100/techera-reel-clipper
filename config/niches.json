@@ -1,0 +1,72 @@
+{
+  "niches": {
+    "tech_gadgets": {
+      "label_bn": "টেক ও স্মার্ট গ্যাজেট",
+      "search_queries": [
+        "viral smart gadgets amazon finds shorts 2026",
+        "cool tech gadgets unboxing demo shorts",
+        "trending mini gadgets review shorts"
+      ],
+      "hook_templates_bn": [
+        "এই স্মার্ট গ্যাজেটটি আপনার দৈনন্দিন কাজ অর্ধেক করে দেবে!",
+        "এত কম দামে এমন অসাধারণ গ্যাজেট আগে দেখেছেন?",
+        "ভাইরাল এই টেক গ্যাজেট এখন বাংলাদেশে!"
+      ],
+      "base_weight": 1.2
+    },
+    "fashion_winter": {
+      "label_bn": "ফ্যাশন ও উইন্টার কালেকশন",
+      "search_queries": [
+        "trending mens hoodie streetwear outfit shorts",
+        "winter fashion jacket hoodie lookbook shorts",
+        "viral fashion accessories unboxing shorts"
+      ],
+      "hook_templates_bn": [
+        "এই শীতে স্টাইলিশ লুকের সেরা পছন্দ!",
+        "প্রিমিয়াম কোয়ালিটির উইন্টার কালেকশন এখন স্টকে!",
+        "কম বাজেটে প্রিমিয়াম ফ্যাশন লুক!"
+      ],
+      "base_weight": 1.15
+    },
+    "home_kitchen": {
+      "label_bn": "হোম ও কিচেন গ্যাজেট",
+      "search_queries": [
+        "viral kitchen gadgets amazon finds shorts",
+        "smart home appliances problem solving shorts",
+        "trending room heater electric kettle demo shorts"
+      ],
+      "hook_templates_bn": [
+        "প্রতিটি ঘরের জন্য দারুণ কাজের এই প্রোডাক্ট!",
+        "ঘরের কাজ সহজ করার ভাইরাল গ্যাজেট!",
+        "শীতের সকালে দারুণ আরামের সমাধান!"
+      ],
+      "base_weight": 1.1
+    },
+    "mobile_audio": {
+      "label_bn": "মোবাইল, TWS ও অডিও",
+      "search_queries": [
+        "best wireless earbuds tws unboxing shorts",
+        "smartwatch powerbank viral tech shorts",
+        "bluetooth speaker gaming headset test shorts"
+      ],
+      "hook_templates_bn": [
+        "সাউন্ড কোয়ালিটি শুনে অবাক হয়ে যাবেন!",
+        "বাজেটের মধ্যে সেরা TWS ও গ্যাজেট!",
+        "গেমিং আর মিউজিকের জন্য পারফেক্ট চয়েস!"
+      ],
+      "base_weight": 1.1
+    },
+    "general_viral": {
+      "label_bn": "অল-ইন-ওয়ান ভাইরাল প্রোডাক্ট",
+      "search_queries": [
+        "tiktok made me buy it viral products shorts",
+        "top selling trending products demo shorts"
+      ],
+      "hook_templates_bn": [
+        "আজকের সবচেয়ে ভাইরাল প্রোডাক্ট দেখে নিন!",
+        "ট্রেন্ডিং এই প্রোডাক্টটি মিস করবেন না!"
+      ],
+      "base_weight": 1.0
+    }
+  }
+}
