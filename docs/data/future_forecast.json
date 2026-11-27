@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-27T06:51:29.136047+00:00",
+  "generated_at": "2026-11-26T18:52:17.189875+00:00",
   "current_season_bn": "শীতের শুরু (Early Winter)",
   "current_hot_products": [
     "Hoodie & Winter Wear",
@@ -18,34 +18,34 @@
   "next_30_days_strategy_bn": "উইন্টার অফার ও কম্বো ডিল — দাম বড় ফন্টে হাইলাইট করুন",
   "rising_niches": [
     {
-      "niche": "tech_gadgets",
-      "learned_weight": 1.25,
-      "live_avg_score": 89.3,
-      "predicted_demand_index": 90.0
-    },
-    {
       "niche": "fashion_winter",
       "learned_weight": 1.15,
-      "live_avg_score": 84.0,
-      "predicted_demand_index": 84.1
-    },
-    {
-      "niche": "general_viral",
-      "learned_weight": 1.0,
-      "live_avg_score": 81.3,
-      "predicted_demand_index": 78.9
+      "live_avg_score": 60.0,
+      "predicted_demand_index": 67.3
     },
     {
       "niche": "home_kitchen",
       "learned_weight": 1.1,
-      "live_avg_score": 77.0,
-      "predicted_demand_index": 78.1
+      "live_avg_score": 60.0,
+      "predicted_demand_index": 66.2
     },
     {
       "niche": "mobile_audio",
       "learned_weight": 1.1,
-      "live_avg_score": 73.7,
-      "predicted_demand_index": 75.8
+      "live_avg_score": 58.6,
+      "predicted_demand_index": 65.2
+    },
+    {
+      "niche": "general_viral",
+      "learned_weight": 1.0,
+      "live_avg_score": 60.0,
+      "predicted_demand_index": 64.0
+    },
+    {
+      "niche": "tech_gadgets",
+      "learned_weight": 1.35,
+      "live_avg_score": 46.9,
+      "predicted_demand_index": 62.6
     }
   ],
   "recommended_content_upgrades_bn": [

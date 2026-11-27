@@ -1,10 +1,11 @@
 {
   "engine_name": "TechEra AI Market & Reel Engine",
-  "version": "0.1.0",
-  "release_date": "2026-11-26",
-  "codename": "Genesis Market Scout",
+  "version": "0.1.1",
+  "release_date": "2026-11-27",
+  "codename": "Strict Tech & Fashion Scout",
   "modules": [
     "trend_scout",
+    "future_forecaster",
     "memory_learner",
     "reel_studio",
     "orchestrator"
