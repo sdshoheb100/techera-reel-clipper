@@ -145,21 +145,23 @@
       <div id="learningBox"><div class="card">মেমরি লোড হচ্ছে...</div></div>
     </section>
 
-    <!-- TAB 4: MOBILE CONTROL -->
+    <!-- TAB 4: MOBILE CONTROL & MY REELS -->
     <section id="tab-control" class="tab-pane">
-      <div class="section-title"><span>🎛️ মোবাইল থেকে ক্লাউড কন্ট্রোল</span></div>
+      <div class="section-title"><span>🎬 আমার তৈরি করা রিলস (সরাসরি দেখুন ও ডাউনলোড করুন)</span></div>
+      <div id="reelsGallery"><div class="card">এখনো কোনো রিলস তৈরি হয়নি — নিচের বাটনে ট্যাপ করে নতুন রিলস বানান!</div></div>
+
+      <div class="section-title" style="margin-top:18px;"><span>🎛️ মোবাইল থেকে নতুন রিলস বানান</span></div>
       <div class="card">
         <p style="font-size:13px;color:#94a3b8;margin-bottom:8px;">
-          পিসি বন্ধ থাকলেও নিচের লিংক দিয়ে সরাসরি GitHub ক্লাউড সার্ভারে নতুন রিলস জেনারেট বা ডেইলি ট্রেন্ড স্ক্যান চালু করতে পারবেন।
+          পিসি বন্ধ থাকলেও নিচের বাটনে ট্যাপ করে GitHub ক্লাউডে নতুন রিলস রান দিন—১ মিনিটের মধ্যেই ভিডিওটি সরাসরি উপরের <strong>আমার তৈরি করা রিলস</strong> সেকশনে চলে আসবে!
         </p>
-        <label>প্রোডাক্টের নাম</label>
-        <input id="ctrlProduct" placeholder="যেমন: Mini Portable Room Heater" />
-        <label>দাম (Price Badge)</label>
-        <input id="ctrlPrice" placeholder="যেমন: Tk 1,290" />
-        <label>ভিডিও লিংক (একাধিক হলে কমা দিয়ে দিন)</label>
-        <textarea id="ctrlUrls" rows="3" placeholder="https://... , https://..."></textarea>
-        <button class="btn btn-green btn-block" onclick="openCloudRun()">🚀 GitHub ক্লাউডে রান ওপেন করুন</button>
-        <a class="btn btn-block" style="background:#334155" href="https://github.com/sdshoheb100/techera-reel-clipper/actions" target="_blank">📦 তৈরি করা ভিডিও (Artifacts) ডাউনলোড</a>
+        <label>হেডার / প্রোডাক্টের নাম (ঐচ্ছিক)</label>
+        <input id="ctrlProduct" placeholder="যেমন: TechEra BD" />
+        <label>দাম (খালি রাখলে স্টোরের আসল দাম অটো বসবে)</label>
+        <input id="ctrlPrice" placeholder="যেমন: Tk 1,290 (ঐচ্ছিক)" />
+        <label>কাস্টম ভিডিও লিংক (ঐচ্ছিক — খালি রাখলে স্টোর প্রোডাক্ট রিলস হবে)</label>
+        <textarea id="ctrlUrls" rows="2" placeholder="https://... (ঐচ্ছিক)"></textarea>
+        <button class="btn btn-green btn-block" onclick="openCloudRun()">🚀 নতুন রিলস বানান (GitHub ক্লাউড)</button>
       </div>
     </section>
   </main>
@@ -204,16 +206,31 @@
 
     async function init() {
       const bundled = window.TECHERA_DATA || {};
-      const [verF, trendsF, memF, fcF] = await Promise.all([
+      const [verF, trendsF, memF, fcF, reelsF] = await Promise.all([
         loadJSON('./data/version.json'),
         loadJSON('./data/daily_trends.json'),
         loadJSON('./data/learning_memory.json'),
-        loadJSON('./data/future_forecast.json')
+        loadJSON('./data/future_forecast.json'),
+        loadJSON('./data/reels_gallery.json')
       ]);
       const ver = verF || bundled.version;
       const trends = trendsF || bundled.trends;
       const mem = memF || bundled.memory;
       const fc = fcF || bundled.forecast;
+      const reels = reelsF || bundled.reels || [];
+
+      if (reels && reels.length > 0) {
+        document.getElementById('reelsGallery').innerHTML = reels.map((r, i) => `
+          <div class="card">
+            <div class="trend-top">
+              <span class="badge">🎬 রিল #${reels.length - i} · ${r.niche || 'all'}</span>
+              <span class="score">${r.duration_seconds || 0}s · ${r.size_mb || 0} MB</span>
+            </div>
+            <div class="trend-title" style="margin-bottom:8px;">${r.title || r.filename}</div>
+            <video controls playsinline preload="metadata" style="width:100%;max-height:420px;border-radius:10px;background:#000;margin-bottom:10px;" src="${r.rel_url}"></video>
+            <a class="btn btn-green btn-block" href="${r.rel_url}" download="${r.filename}">⬇️ সরাসরি ভিডিও ডাউনলোড (MP4)</a>
+          </div>`).join('');
+      }
 
       if (ver) {
         document.getElementById('versionBadge').textContent = 'v' + ver.version;
