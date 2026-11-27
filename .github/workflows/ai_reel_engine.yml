@@ -1,21 +1,21 @@
-name: TechEra AI Market & Reel Engine (v0.2.0)
+name: TechEra AI Market & Reel Engine (v0.3.0)
 
 on:
   schedule:
-    # Daily trend scan & fresh StoreLine product Reel at 09:00 AM Bangladesh Time (03:00 UTC)
+    # Daily trend scan & fresh product Reel at 09:00 AM Bangladesh Time (03:00 UTC)
     - cron: "0 3 * * *"
   workflow_dispatch:
     inputs:
       mode:
-        description: "Engine Mode (store_product_reel = 100% Zero-Fail)"
+        description: "Engine Mode (custom_video_reel = URL Video + BGM | store_product_reel = StoreLine)"
         type: choice
         required: true
-        default: "store_product_reel"
+        default: "custom_video_reel"
         options:
+          - custom_video_reel
           - store_product_reel
           - daily_trend_report
           - auto_trending_reel
-          - custom_video_reel
       niche:
         description: "Product Category / Niche"
         type: choice
@@ -73,7 +73,9 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run TechEra AI Engine (v0.2.0)
+      - name: Run TechEra AI Engine (v0.3.0)
+        env:
+          YOUTUBE_COOKIES: ${{ secrets.YOUTUBE_COOKIES }}
         run: |
           python main.py \
             --mode "${{ github.event.inputs.mode || 'store_product_reel' }}" \
