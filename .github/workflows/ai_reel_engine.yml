@@ -1,4 +1,4 @@
-name: TechEra AI Market & Reel Engine (v0.1.0)
+name: TechEra AI Market & Reel Engine (v0.1.1)
 
 on:
   schedule:
@@ -10,10 +10,10 @@ on:
         description: "Engine Mode"
         type: choice
         required: true
-        default: "daily_trend_report"
+        default: "auto_trending_reel"
         options:
-          - daily_trend_report
           - auto_trending_reel
+          - daily_trend_report
           - custom_video_reel
       niche:
         description: "Product Category / Niche"
@@ -23,10 +23,9 @@ on:
         options:
           - all
           - tech_gadgets
-          - fashion_winter
-          - home_kitchen
+          - fashion_design
           - mobile_audio
-          - general_viral
+          - smart_home_tech
       video_urls:
         description: "Custom Video URLs (comma-separated, for custom_video_reel)"
         required: false
