@@ -1,9 +1,10 @@
 {
   "engine_name": "TechEra AI Market & Reel Engine",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "release_date": "2026-11-27",
-  "codename": "Strict Tech & Fashion Scout",
+  "codename": "Zero-Fail StoreLine Reel Studio",
   "modules": [
+    "store_reel_studio",
     "trend_scout",
     "future_forecaster",
     "memory_learner",
