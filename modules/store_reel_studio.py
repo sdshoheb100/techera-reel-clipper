@@ -15,6 +15,7 @@ import subprocess
 import urllib.parse
 import urllib.request
 from pathlib import Path
+from modules.reel_studio import generate_royalty_free_bgm
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 WORK_DIR = BASE_DIR / "work"
@@ -218,22 +219,24 @@ def render_store_product_reel(
         )
         segments.append(seg_out)
 
-    # Concat all product clips & attach clean copyright-safe stereo track
+    # Concat all product clips & attach 100% royalty-free background music (NO voiceover)
     concat_list = WORK_DIR / "store_concat.txt"
     concat_list.write_text("\n".join(f"file '{s.as_posix()}'" for s in segments), encoding="utf-8")
     total_dur = sec_per_product * len(segments)
+    bgm_path = generate_royalty_free_bgm(total_dur, WORK_DIR / "store_bgm.m4a")
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
     _run(
         [
             "ffmpeg", "-y",
             "-f", "concat", "-safe", "0", "-i", str(concat_list),
-            "-f", "lavfi", "-t", f"{total_dur:.2f}", "-i", "anullsrc=channel_layout=stereo:sample_rate=44100",
+            "-i", str(bgm_path),
             "-map", "0:v", "-map", "1:a",
-            "-c:v", "copy", "-c:a", "aac", "-shortest",
+            "-map_metadata", "-1",
+            "-c:v", "copy", "-c:a", "copy", "-shortest",
             str(out_path),
         ],
-        f"Finalizing {len(segments)}-product StoreLine Reel -> {out_path.name}",
+        f"Finalizing {len(segments)}-product StoreLine Reel with BGM -> {out_path.name}",
     )
 
     return {
