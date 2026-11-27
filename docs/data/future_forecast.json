@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-27T08:31:45.761493+00:00",
+  "generated_at": "2026-11-27T08:38:54.118932+00:00",
   "current_season_bn": "শীতের শুরু (Early Winter)",
   "current_hot_products": [
     "Hoodie & Winter Wear",
@@ -19,9 +19,9 @@
   "rising_niches": [
     {
       "niche": "tech_gadgets",
-      "learned_weight": 1.3,
+      "learned_weight": 1.35,
       "live_avg_score": 60.0,
-      "predicted_demand_index": 70.6
+      "predicted_demand_index": 71.7
     },
     {
       "niche": "fashion_winter",
