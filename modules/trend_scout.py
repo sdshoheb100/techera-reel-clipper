@@ -8,6 +8,7 @@ import json
 import math
 import subprocess
 import sys
+import urllib.parse
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -16,9 +17,12 @@ NICHES_PATH = BASE_DIR / "config" / "niches.json"
 
 
 def _search_yt_metadata(query: str, limit: int = 8) -> list:
+    # Use YouTube's official "This Year" upload-date filter (sp=EgIIBQ%3D%3D) so ONLY 2026 recent videos are returned!
+    yt_url = f"https://www.youtube.com/results?search_query={urllib.parse.quote_plus(query)}&sp=EgIIBQ%3D%3D"
     cmd = [
         sys.executable, "-m", "yt_dlp",
-        f"ytsearch{limit}:{query}",
+        yt_url,
+        "--playlist-end", str(limit),
         "--dump-json",
         "--flat-playlist",
         "--no-warnings",
