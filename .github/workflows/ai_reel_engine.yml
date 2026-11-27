@@ -1,19 +1,20 @@
-name: TechEra AI Market & Reel Engine (v0.1.1)
+name: TechEra AI Market & Reel Engine (v0.2.0)
 
 on:
   schedule:
-    # Daily trend scouting at 09:00 AM Bangladesh Time (03:00 UTC)
+    # Daily trend scan & fresh StoreLine product Reel at 09:00 AM Bangladesh Time (03:00 UTC)
     - cron: "0 3 * * *"
   workflow_dispatch:
     inputs:
       mode:
-        description: "Engine Mode"
+        description: "Engine Mode (store_product_reel = 100% Zero-Fail)"
         type: choice
         required: true
-        default: "auto_trending_reel"
+        default: "store_product_reel"
         options:
-          - auto_trending_reel
+          - store_product_reel
           - daily_trend_report
+          - auto_trending_reel
           - custom_video_reel
       niche:
         description: "Product Category / Niche"
@@ -22,28 +23,28 @@ on:
         default: "all"
         options:
           - all
-          - tech_gadgets
           - fashion_design
+          - tech_gadgets
           - mobile_audio
           - smart_home_tech
       video_urls:
-        description: "Custom Video URLs (comma-separated, for custom_video_reel)"
+        description: "Custom Direct MP4 URLs (only for custom_video_reel)"
         required: false
         default: ""
       product_name:
-        description: "Product Title Overlay"
+        description: "Top Header / Product Title"
         required: false
-        default: "TechEra BD Trending Gadget"
+        default: "TechEra BD"
       price_text:
-        description: "Price Badge (e.g. Tk 1,290)"
+        description: "Optional Price Override (leave blank for automatic store prices)"
         required: false
-        default: "Tk 1,290"
+        default: ""
       clip_seconds:
-        description: "Seconds per Clip (3 to 10)"
+        description: "Seconds per Product Clip"
         required: false
-        default: "4"
+        default: "3.5"
       max_clips:
-        description: "Number of Videos to Research & Stitch (1 to 4)"
+        description: "Number of Products to Feature (1 to 4)"
         required: false
         default: "3"
 
@@ -72,29 +73,29 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run TechEra AI Engine
+      - name: Run TechEra AI Engine (v0.2.0)
         run: |
           python main.py \
-            --mode "${{ github.event.inputs.mode || 'daily_trend_report' }}" \
+            --mode "${{ github.event.inputs.mode || 'store_product_reel' }}" \
             --niche "${{ github.event.inputs.niche || 'all' }}" \
             --urls "${{ github.event.inputs.video_urls || '' }}" \
-            --product "${{ github.event.inputs.product_name || 'TechEra BD Trending Gadget' }}" \
+            --product "${{ github.event.inputs.product_name || 'TechEra BD' }}" \
             --price "${{ github.event.inputs.price_text || '' }}" \
-            --clip-seconds "${{ github.event.inputs.clip_seconds || '4' }}" \
+            --clip-seconds "${{ github.event.inputs.clip_seconds || '3.5' }}" \
             --max-clips "${{ github.event.inputs.max_clips || '3' }}"
 
-      - name: Persist Learning Memory & Mobile App Live Feed
+      - name: Publish Ready Reel & Live Feed to Mobile App
         run: |
           git config user.name "TechEra AI Bot"
           git config user.email "bot@techerabd.local"
-          git add data/learning_memory.json docs/data/
-          git diff --staged --quiet || git commit -m "chore(ai): update daily trends & learning memory [skip ci]"
+          git add data/learning_memory.json docs/data/ docs/reels/
+          git diff --staged --quiet || git commit -m "feat(reels): publish fresh AI Reel & live trends to Mobile App"
           git push
 
-      - name: Upload Output Artifacts (Ready Reel & Trend Report)
+      - name: Upload Output Artifacts (Backup Download)
         uses: actions/upload-artifact@v4
         with:
-          name: techera-ai-output-${{ github.run_number }}
+          name: techera-reel-${{ github.run_number }}
           path: |
             output/
           retention-days: 7
