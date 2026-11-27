@@ -3,70 +3,69 @@
     "tech_gadgets": {
       "label_bn": "টেক ও স্মার্ট গ্যাজেট",
       "search_queries": [
-        "viral smart gadgets amazon finds shorts 2026",
-        "cool tech gadgets unboxing demo shorts",
-        "trending mini gadgets review shorts"
+        "cool tech gadget unboxing #shorts",
+        "smart desk gadget review #shorts",
+        "mini portable tech gadget #shorts"
       ],
       "hook_templates_bn": [
-        "এই স্মার্ট গ্যাজেটটি আপনার দৈনন্দিন কাজ অর্ধেক করে দেবে!",
-        "এত কম দামে এমন অসাধারণ গ্যাজেট আগে দেখেছেন?",
-        "ভাইরাল এই টেক গ্যাজেট এখন বাংলাদেশে!"
+        "এই স্মার্ট টেক গ্যাজেটটি আপনার দৈনন্দিন কাজ অর্ধেক করে দেবে!",
+        "এত কম দামে এমন অসাধারণ টেক গ্যাজেট আগে দেখেছেন?",
+        "ভাইরাল এই স্মার্ট গ্যাজেট এখন বাংলাদেশে!"
+      ],
+      "base_weight": 1.3
+    },
+    "fashion_design": {
+      "label_bn": "ফ্যাশন ডিজাইন ও উইন্টার ওয়্যার",
+      "search_queries": [
+        "mens hoodie streetwear fashion outfit #shorts",
+        "winter jacket fashion design style #shorts",
+        "mens luxury watch sunglasses fashion #shorts"
+      ],
+      "hook_templates_bn": [
+        "এই শীতে স্টাইলিশ ফ্যাশন লুকের সেরা পছন্দ!",
+        "প্রিমিয়াম ডিজাইনের উইন্টার কালেকশন এখন স্টকে!",
+        "কম বাজেটে প্রিমিয়াম স্ট্রিটওয়্যার ফ্যাশন লুক!"
+      ],
+      "base_weight": 1.3
+    },
+    "mobile_audio": {
+      "label_bn": "TWS, স্মার্টওয়াচ ও অডিও টেক",
+      "search_queries": [
+        "wireless earbuds tws unboxing #shorts",
+        "smartwatch unboxing review #shorts",
+        "power bank fast charger tech #shorts"
+      ],
+      "hook_templates_bn": [
+        "সাউন্ড আর ডিজাইন দেখে অবাক হয়ে যাবেন!",
+        "বাজেটের মধ্যে সেরা TWS ও স্মার্টওয়াচ!",
+        "গেমিং আর মিউজিকের জন্য পারফেক্ট টেক চয়েস!"
       ],
       "base_weight": 1.2
     },
-    "fashion_winter": {
-      "label_bn": "ফ্যাশন ও উইন্টার কালেকশন",
+    "smart_home_tech": {
+      "label_bn": "স্মার্ট হোম ও পোর্টেবল টেক",
       "search_queries": [
-        "trending mens hoodie streetwear outfit shorts",
-        "winter fashion jacket hoodie lookbook shorts",
-        "viral fashion accessories unboxing shorts"
+        "mini room heater electric kettle gadget #shorts",
+        "wifi cctv security camera unboxing #shorts",
+        "smart led lamp desk tech #shorts"
       ],
       "hook_templates_bn": [
-        "এই শীতে স্টাইলিশ লুকের সেরা পছন্দ!",
-        "প্রিমিয়াম কোয়ালিটির উইন্টার কালেকশন এখন স্টকে!",
-        "কম বাজেটে প্রিমিয়াম ফ্যাশন লুক!"
+        "ঘরের জন্য দারুণ কাজের স্মার্ট টেক প্রোডাক্ট!",
+        "শীতের আরাম ও নিরাপত্তার সেরা স্মার্ট সমাধান!",
+        "প্রতিটি স্মার্ট ঘরের জন্য মাস্ট-হ্যাভ গ্যাজেট!"
       ],
       "base_weight": 1.15
-    },
-    "home_kitchen": {
-      "label_bn": "হোম ও কিচেন গ্যাজেট",
-      "search_queries": [
-        "viral kitchen gadgets amazon finds shorts",
-        "smart home appliances problem solving shorts",
-        "trending room heater electric kettle demo shorts"
-      ],
-      "hook_templates_bn": [
-        "প্রতিটি ঘরের জন্য দারুণ কাজের এই প্রোডাক্ট!",
-        "ঘরের কাজ সহজ করার ভাইরাল গ্যাজেট!",
-        "শীতের সকালে দারুণ আরামের সমাধান!"
-      ],
-      "base_weight": 1.1
-    },
-    "mobile_audio": {
-      "label_bn": "মোবাইল, TWS ও অডিও",
-      "search_queries": [
-        "best wireless earbuds tws unboxing shorts",
-        "smartwatch powerbank viral tech shorts",
-        "bluetooth speaker gaming headset test shorts"
-      ],
-      "hook_templates_bn": [
-        "সাউন্ড কোয়ালিটি শুনে অবাক হয়ে যাবেন!",
-        "বাজেটের মধ্যে সেরা TWS ও গ্যাজেট!",
-        "গেমিং আর মিউজিকের জন্য পারফেক্ট চয়েস!"
-      ],
-      "base_weight": 1.1
-    },
-    "general_viral": {
-      "label_bn": "অল-ইন-ওয়ান ভাইরাল প্রোডাক্ট",
-      "search_queries": [
-        "tiktok made me buy it viral products shorts",
-        "top selling trending products demo shorts"
-      ],
-      "hook_templates_bn": [
-        "আজকের সবচেয়ে ভাইরাল প্রোডাক্ট দেখে নিন!",
-        "ট্রেন্ডিং এই প্রোডাক্টটি মিস করবেন না!"
-      ],
-      "base_weight": 1.0
     }
-  }
+  },
+  "blocked_keywords": [
+    "saas", "software", "explainer", "b2b", "app demo", "coding", "python",
+    "tutorial", "podcast", "movie", "song", "music video", "vlog", "comedy",
+    "prank", "2020", "2021", "2022", "2023", "80 amazon", "100 amazon", "i tested every"
+  ],
+  "required_keywords": [
+    "gadget", "tech", "earbud", "tws", "airpod", "watch", "smartwatch", "headphone",
+    "speaker", "power bank", "charger", "camera", "cctv", "lamp", "heater", "kettle",
+    "hoodie", "jacket", "fashion", "outfit", "streetwear", "style", "clothing", "shirt",
+    "sunglass", "shoe", "sneaker", "accessories", "unboxing", "keyboard", "mouse", "phone"
+  ]
 }
