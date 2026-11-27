@@ -1,8 +1,7 @@
 """
-TechEra AI Engine — Daily Market Expert & Multi-Niche Trend Scout (v0.1.0)
-Researches trending product videos across Tech Gadgets, Fashion/Winter,
-Home & Kitchen, Mobile/Audio, and Viral products using yt-dlp search metadata.
-Scores and ranks today's top recommendations for the Mobile App dashboard.
+TechEra AI Engine — Strict Tech & Fashion Trend Scout (v0.1.1)
+Researches ONLY short, crisp Tech Product & Fashion Design videos (<=75s),
+strictly filtering out SaaS/software/explainer ads, old videos, and long compilations.
 """
 
 import json
@@ -16,7 +15,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 NICHES_PATH = BASE_DIR / "config" / "niches.json"
 
 
-def _search_yt_metadata(query: str, limit: int = 5) -> list:
+def _search_yt_metadata(query: str, limit: int = 8) -> list:
     cmd = [
         sys.executable, "-m", "yt_dlp",
         f"ytsearch{limit}:{query}",
@@ -43,24 +42,34 @@ def _search_yt_metadata(query: str, limit: int = 5) -> list:
         return []
 
 
+def _is_relevant_short(entry: dict, blocked: list[str], required: list[str]) -> bool:
+    title = (entry.get("title") or "").lower()
+    dur = entry.get("duration") or 0
+    # Strict short-form duration: 6s to 75s only (no long 10-minute compilations)
+    if dur < 6 or dur > 75:
+        return False
+    if any(b in title for b in blocked):
+        return False
+    if not any(r in title for r in required):
+        return False
+    return True
+
+
 def score_candidate(entry: dict, niche_weight: float) -> float:
     views = entry.get("view_count") or 0
     duration = entry.get("duration") or 30
-    # Log-scale view score (0..65)
     view_score = min(65.0, math.log10(max(10, views)) * 10.5)
-    # Duration bonus: ideal short product demo is 10..65 seconds
-    if 10 <= duration <= 65:
-        dur_score = 25.0
-    elif 6 <= duration <= 120:
-        dur_score = 15.0
-    else:
-        dur_score = 5.0
+    dur_score = 25.0 if 10 <= duration <= 60 else 16.0
     raw = (view_score + dur_score) * niche_weight
     return round(min(100.0, raw), 1)
 
 
-def scout_daily_trends(memory: dict, target_niche: str = "all", per_niche_limit: int = 4) -> dict:
-    niches_cfg = json.loads(NICHES_PATH.read_text(encoding="utf-8"))["niches"]
+def scout_daily_trends(memory: dict, target_niche: str = "all", per_niche_limit: int = 8) -> dict:
+    raw_cfg = json.loads(NICHES_PATH.read_text(encoding="utf-8"))
+    niches_cfg = raw_cfg["niches"]
+    blocked = [b.lower() for b in raw_cfg.get("blocked_keywords", [])]
+    required = [r.lower() for r in raw_cfg.get("required_keywords", [])]
+
     used_ids = set(memory.get("used_video_ids", []))
     niche_weights = memory.get("niche_weights", {})
 
@@ -80,16 +89,18 @@ def scout_daily_trends(memory: dict, target_niche: str = "all", per_niche_limit:
         hooks = cfg.get("hook_templates_bn", [])
         niche_hits = []
 
-        for q in queries[:2]:
+        for q in queries:
             entries = _search_yt_metadata(q, limit=per_niche_limit)
             for e in entries:
                 vid = e.get("id")
                 if not vid or vid in seen_ids or vid in used_ids:
                     continue
+                if not _is_relevant_short(e, blocked, required):
+                    continue
                 seen_ids.add(vid)
-                url = e.get("url") or f"https://www.youtube.com/watch?v={vid}"
+                url = e.get("url") or f"https://www.youtube.com/shorts/{vid}"
                 if not url.startswith("http"):
-                    url = f"https://www.youtube.com/watch?v={vid}"
+                    url = f"https://www.youtube.com/shorts/{vid}"
                 sc = score_candidate(e, weight)
                 niche_hits.append({
                     "id": vid,
@@ -116,22 +127,20 @@ def scout_daily_trends(memory: dict, target_niche: str = "all", per_niche_limit:
         "top_picks": recommendations[:12],
     }
 
-    # Save to output/ and docs/data/ so the Mobile App displays today's trends live
     for out_p in [BASE_DIR / "output" / "daily_trends.json", BASE_DIR / "docs" / "data" / "daily_trends.json"]:
         out_p.parent.mkdir(parents=True, exist_ok=True)
         out_p.write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
 
-    # Also write readable Markdown summary
     md_lines = [
-        f"# TechEra AI Market Expert — Daily Trending Recommendations",
+        f"# TechEra AI Market Expert — Daily Tech & Fashion Trends (v0.1.1)",
         f"- Generated: `{report['generated_at']}`",
         f"- Total Ranked Picks: **{len(report['top_picks'])}**\n",
-        "| # | Niche | Score | Views | Title | Hook (BN) |",
-        "| :---: | :--- | :---: | :---: | :--- | :--- |",
+        "| # | Niche | Score | Dur | Views | Title | Hook (BN) |",
+        "| :---: | :--- | :---: | :---: | :---: | :--- | :--- |",
     ]
     for i, item in enumerate(report["top_picks"], 1):
         md_lines.append(
-            f"| {i} | {item['niche_label_bn']} | **{item['trend_score']}** | {item['views']:,} | [{item['title'][:45]}]({item['url']}) | {item['recommended_hook_bn']} |"
+            f"| {i} | {item['niche_label_bn']} | **{item['trend_score']}** | {item['duration']}s | {item['views']:,} | [{item['title'][:45]}]({item['url']}) | {item['recommended_hook_bn']} |"
         )
     (BASE_DIR / "output" / "daily_trends.md").write_text("\n".join(md_lines), encoding="utf-8")
     return report
