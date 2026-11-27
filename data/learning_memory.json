@@ -1,16 +1,20 @@
 {
-  "engine_version": "0.1.1",
-  "total_runs": 2,
-  "total_reels_generated": 1,
+  "engine_version": "0.2.0",
+  "total_runs": 3,
+  "total_reels_generated": 2,
   "used_video_ids": [
-    "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+    "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+    "olax-m100-power-bank-wifi-router",
+    "r36s-all-in-one-handheld-gaming-console",
+    "vacuum-flask-set-500ml"
   ],
   "niche_weights": {
     "tech_gadgets": 1.3,
     "fashion_winter": 1.15,
     "home_kitchen": 1.1,
     "mobile_audio": 1.1,
-    "general_viral": 1.0
+    "general_viral": 1.0,
+    "fashion_design": 1.05
   },
   "history": [
     {
@@ -28,11 +32,19 @@
       "clips_used": 1,
       "avg_trend_score": 75.0,
       "reel_created": true
+    },
+    {
+      "timestamp": "2026-11-27T08:31:45.760991+00:00",
+      "mode": "store_product_reel",
+      "niche": "fashion_design",
+      "clips_used": 3,
+      "avg_trend_score": 88.0,
+      "reel_created": true
     }
   ],
   "next_video_tips_bn": [
     "বর্তমান ডাটা অনুযায়ী 'tech_gadgets' ক্যাটাগরির ট্রেন্ড স্কোর সবচেয়ে শক্তিশালী (Weight: 1.3x)।",
-    "এখন পর্যন্ত 1টি রিলস জেনারেট ও 1টি সোর্স ক্লিপ ট্র্যাক হয়েছে—ডুপ্লিকেট ক্লিপ অটো-স্কিপ করা হচ্ছে।",
+    "এখন পর্যন্ত 2টি রিলস জেনারেট ও 4টি সোর্স ক্লিপ ট্র্যাক হয়েছে—ডুপ্লিকেট ক্লিপ অটো-স্কিপ করা হচ্ছে।",
     "৩–৪ সেকেন্ডের দ্রুত কাট (মাল্টি-ক্লিপ ম্যাশআপ) + পরিষ্কার দাম ও বাংলা হুক সর্বোচ্চ এনগেজমেন্ট দেয়।"
   ],
   "next_version_suggestions": [
@@ -49,5 +61,5 @@
       "feature": "Facebook Insights Engagement Feedback Loop (auto-reweight niches by real views/likes)"
     }
   ],
-  "last_updated": "2026-11-27T07:02:44.838679+00:00"
+  "last_updated": "2026-11-27T08:31:45.762006+00:00"
 }

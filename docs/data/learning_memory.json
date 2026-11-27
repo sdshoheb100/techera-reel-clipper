@@ -1,56 +1,49 @@
 {
   "engine_version": "0.2.0",
-  "total_runs": 4,
+  "total_runs": 3,
   "total_reels_generated": 2,
   "used_video_ids": [
-    "champion-ptz-single-lens-bulb-wifi-ip-camera",
-    "dahuya-2-mega-piksel-8-kamera-pakej",
     "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
-    "plastic-black-safetynet-wifi-hidden-charger-camera-usb-wall-charger-adapter"
+    "olax-m100-power-bank-wifi-router",
+    "r36s-all-in-one-handheld-gaming-console",
+    "vacuum-flask-set-500ml"
   ],
   "niche_weights": {
-    "tech_gadgets": 1.4,
+    "tech_gadgets": 1.3,
     "fashion_winter": 1.15,
     "home_kitchen": 1.1,
     "mobile_audio": 1.1,
-    "general_viral": 1.0
+    "general_viral": 1.0,
+    "fashion_design": 1.05
   },
   "history": [
     {
-      "timestamp": "2026-11-26T18:01:46.801693+00:00",
+      "timestamp": "2026-11-27T06:51:29.135576+00:00",
       "mode": "daily_trend_report",
       "niche": "tech_gadgets",
       "clips_used": 0,
-      "avg_trend_score": 86.8,
+      "avg_trend_score": 91.3,
       "reel_created": false
     },
     {
-      "timestamp": "2026-11-26T18:11:40.521554+00:00",
+      "timestamp": "2026-11-27T07:02:44.836868+00:00",
       "mode": "custom_video_reel",
       "niche": "tech_gadgets",
-      "clips_used": 2,
+      "clips_used": 1,
       "avg_trend_score": 75.0,
       "reel_created": true
     },
     {
-      "timestamp": "2026-11-26T18:52:17.189404+00:00",
-      "mode": "daily_trend_report",
-      "niche": "tech_gadgets",
-      "clips_used": 0,
-      "avg_trend_score": 95.4,
-      "reel_created": false
-    },
-    {
-      "timestamp": "2026-11-27T07:19:36.709498+00:00",
+      "timestamp": "2026-11-27T08:31:45.760991+00:00",
       "mode": "store_product_reel",
-      "niche": "tech_gadgets",
+      "niche": "fashion_design",
       "clips_used": 3,
       "avg_trend_score": 88.0,
       "reel_created": true
     }
   ],
   "next_video_tips_bn": [
-    "বর্তমান ডাটা অনুযায়ী 'tech_gadgets' ক্যাটাগরির ট্রেন্ড স্কোর সবচেয়ে শক্তিশালী (Weight: 1.4x)।",
+    "বর্তমান ডাটা অনুযায়ী 'tech_gadgets' ক্যাটাগরির ট্রেন্ড স্কোর সবচেয়ে শক্তিশালী (Weight: 1.3x)।",
     "এখন পর্যন্ত 2টি রিলস জেনারেট ও 4টি সোর্স ক্লিপ ট্র্যাক হয়েছে—ডুপ্লিকেট ক্লিপ অটো-স্কিপ করা হচ্ছে।",
     "৩–৪ সেকেন্ডের দ্রুত কাট (মাল্টি-ক্লিপ ম্যাশআপ) + পরিষ্কার দাম ও বাংলা হুক সর্বোচ্চ এনগেজমেন্ট দেয়।"
   ],
@@ -68,5 +61,5 @@
       "feature": "Facebook Insights Engagement Feedback Loop (auto-reweight niches by real views/likes)"
     }
   ],
-  "last_updated": "2026-11-27T07:19:36.710705+00:00"
+  "last_updated": "2026-11-27T08:31:45.762006+00:00"
 }
